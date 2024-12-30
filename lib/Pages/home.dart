@@ -1,4 +1,5 @@
 import 'package:board_game_borrower/Colors.dart';
+import 'package:board_game_borrower/Pages/borrow_screen.dart';
 import 'package:board_game_borrower/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -51,7 +52,10 @@ class GameTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        debugPrint('Game tile tapped');
+        Navigator.push(
+          context, 
+          MaterialPageRoute(builder: (context) => BorrowScreen())
+        );
       },
       child: Container(
         decoration: BoxDecoration(

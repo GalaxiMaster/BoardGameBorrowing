@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 AppBar mainAppBar = AppBar(
+  automaticallyImplyLeading: false,
   title: Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
