@@ -11,7 +11,22 @@ class HomePage extends StatelessWidget{
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('ROLLERS GAMES HUB'),
+            Row(
+              children: [
+                Text(
+                  'ROLLERS GAMES HUB',
+                  style: TextStyle(
+                    fontFamily: 'Marujo',
+                  ),
+                ),
+                SizedBox(width: 10),
+                Image.asset(
+                  'Assets/logo-red.png',
+                  width: 25,
+                  height: 25,
+                )
+              ],
+            ),
             Icon(
               Icons.menu,
               size: 35,
@@ -59,7 +74,14 @@ class HomePage extends StatelessWidget{
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Catan'),
+                          Text(
+                            'Catan',
+                            style: TextStyle(
+                              fontFamily: 'worksans',
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                           Row(
                             children: [
                               Icon(Icons.person),
@@ -75,7 +97,8 @@ class HomePage extends StatelessWidget{
                           Row(
                             children: [
                               Icon(
-                                Icons.pin_drop,
+                                Icons.place,
+                                color: MainColors.primaryColor,
                                 size: 30,
                               ),
                               Text('Central Library'),
