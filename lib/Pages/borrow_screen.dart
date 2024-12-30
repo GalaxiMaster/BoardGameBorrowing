@@ -41,98 +41,130 @@ class _BorrowScreenState extends State<BorrowScreen> {
       appBar: mainAppBar,
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
-        child: IntrinsicHeight(
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(
-                color: Colors.black12
+        child: Column(
+          spacing: 10,
+          children: [
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(7.5),
+                  border: Border.all(
+                    color: Colors.black12
+                  ),
+                ),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Back to games library',
+                      style: TextStyle(
+                        fontFamily: 'worksans',
+                        fontSize: 18,
+                        color: Colors.black87.withAlpha(175),
+                      ),
+                    ),
+                  ),
+                ),
               ),
             ),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 7.5, horizontal: 15),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
+            IntrinsicHeight(
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: Colors.black12
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 7.5, horizontal: 15),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'Catan',
-                              style: TextStyle(
-                                fontFamily: 'worksans',
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Row(
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Icon(Icons.person),
-                                SizedBox(width: 4), // Space between icon and text
-                                Text('3-4'),
-                                SizedBox(width: 16), // Space between two groups
-                                Icon(Icons.access_time),
-                                SizedBox(width: 4), // Space between icon and text
-                                Text('60-120 min'),
-                              ],
-                            ),
-                            Text('A classic strategy game of resource trading and settlement building'),
-                            Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: Row(
-                                children: [
-                                  ConstrainedBox(
-                                    constraints: BoxConstraints(
-                                      minHeight: 30, // Set a minimum height
-                                    ),
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(50), // Optional for rounded edges
-                                        color: MainColors.secondaryColor,
-                                      ),
-                                      child: Center(
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 7.5, vertical: 2),
-                                          child: Text(
-                                            'Borrow', 
-                                            style: TextStyle(
-                                              fontFamily: 'worksans',
-                                              fontSize: 13,
-                                              color: Colors.white
-                                            )
+                                Text(
+                                  'Catan',
+                                  style: TextStyle(
+                                    fontFamily: 'worksans',
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    Icon(Icons.person),
+                                    SizedBox(width: 4), // Space between icon and text
+                                    Text('3-4'),
+                                    SizedBox(width: 16), // Space between two groups
+                                    Icon(Icons.access_time),
+                                    SizedBox(width: 4), // Space between icon and text
+                                    Text('60-120 min'),
+                                  ],
+                                ),
+                                Text('A classic strategy game of resource trading and settlement building'),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(vertical: 10),
+                                  child: Row(
+                                    children: [
+                                      ConstrainedBox(
+                                        constraints: BoxConstraints(
+                                          minHeight: 30, // Set a minimum height
+                                        ),
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(50), // Optional for rounded edges
+                                            color: MainColors.secondaryColor,
+                                          ),
+                                          child: Center(
+                                            child: Padding(
+                                              padding: const EdgeInsets.symmetric(horizontal: 7.5, vertical: 2),
+                                              child: Text(
+                                                'Borrow', 
+                                                style: TextStyle(
+                                                  fontFamily: 'worksans',
+                                                  fontSize: 13,
+                                                  color: Colors.white
+                                                )
+                                              ),
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                          Image.asset(
+                            'Assets/catan.png',
+                            scale: 1.2,
+                          ),
+                        ],
                       ),
-                      Image.asset(
-                        'Assets/catan.png',
-                        scale: 1.2,
+                      SelectHubSection(
+                        gameData: gameData,
+                        selections: selections,
+                        onHubSelected: (hub) {
+                          setState(() {
+                            selections['hub'] = hub;
+                          });
+                        },
                       ),
                     ],
                   ),
-                  SelectHubSection(
-                    gameData: gameData,
-                    selections: selections,
-                    onHubSelected: (hub) {
-                      setState(() {
-                        selections['hub'] = hub;
-                      });
-                    },
-                  ),
-                ],
+                )
               ),
-            )
-          ),
+            ),
+          ],
         )
       )
     );
