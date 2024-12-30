@@ -19,3 +19,14 @@ flutter:
   uses-material-design: true
   assets:
     - Assets/
+    - Assets/logo-red.png
+
+  fonts:
+    - family: Marujo
+      fonts:
+        - asset: Assets/Fonts/Marujo/Marujo.ttf
+    - family: worksans
+      fonts:
+        - asset: Assets/Fonts/worksans/WorkSans-Regular.ttf
+        - asset: Assets/Fonts/worksans/WorkSans-Bold.ttf
+          weight: 700
