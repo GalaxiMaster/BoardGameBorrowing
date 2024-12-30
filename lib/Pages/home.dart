@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget{
                 ),
               ),
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 7.5),
+                padding: const EdgeInsets.symmetric(vertical: 7.5, horizontal: 15),
                 child: Row(
                   children: [
                     Expanded(
@@ -84,6 +84,37 @@ class HomePage extends StatelessWidget{
                         ],
                       ),
                     ),
+                    Column(
+                      children: [
+                        IntrinsicWidth(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(5), // Optional for rounded edges
+                              color: MainColors.primaryColor,
+                            ),
+                            child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                                child: Text(
+                                  'Select', 
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    decoration: TextDecoration.underline,
+                                    decorationColor: Colors.white,
+                                    color: Colors.white
+                                  )
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        Image.asset(
+                          'Assets/catan.png',
+                          scale: 1.2,
+                        )
+                      ],
+                    ),
                   ],
                 ),
               )
@@ -93,5 +124,4 @@ class HomePage extends StatelessWidget{
       )
     );
   }
-
 }
