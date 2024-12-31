@@ -7,10 +7,13 @@ class YourRentals extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        GameTile()
-      ], 
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Column(
+        children: [
+          GameTile()
+        ], 
+      ),
     );
   }
 }

@@ -16,11 +16,11 @@ class Home extends StatelessWidget {
     PageController controller = PageController();
     return Scaffold(
       appBar: mainAppBar,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
-        child: Column(
-          children: [
-            Stack(
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Stack(
               children: [
                 Row(
                   children: [
@@ -72,20 +72,23 @@ class Home extends StatelessWidget {
                 ),
               ],
             ),
-            Divider(thickness: 1, color: Colors.black),
-            SizedBox(
-              height: 500,
-              child: PageView.builder(
-                controller: controller,
-                itemCount: pages.length,
-                onPageChanged: (index) => debugPrint('Page: $index'),
-                itemBuilder: (context, index) {
-                  return pages[index];
-                },
-              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 30),
+            child: Divider(thickness: 1, color: Colors.black),
+          ),
+          SizedBox(
+            height: 500,
+            child: PageView.builder(
+              controller: controller,
+              itemCount: pages.length,
+              onPageChanged: (index) => debugPrint('Page: $index'),
+              itemBuilder: (context, index) {
+                return pages[index];
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -96,10 +99,13 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        GameTile(),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30),
+      child: Column(
+        children: [
+          GameTile(),
+        ],
+      ),
     );
   }
 }
