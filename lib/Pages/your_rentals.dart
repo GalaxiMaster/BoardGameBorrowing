@@ -1,69 +1,15 @@
 import 'package:board_game_borrower/Colors.dart';
 import 'package:board_game_borrower/Pages/borrow_screen.dart';
-import 'package:board_game_borrower/Pages/your_rentals.dart';
-import 'package:board_game_borrower/widgets.dart';
 import 'package:flutter/material.dart';
 
-class Home extends StatelessWidget{
-  const Home({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    List pages = [
-      HomePage(),
-      YourRentals(),
-    ];
-    return Scaffold(
-      appBar: mainAppBar,
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Text(
-                  'Browse Games', 
-                  style: TextStyle(
-                    fontSize: 20, 
-                    decoration: TextDecoration.underline,
-                    decorationColor: MainColors.primaryColor,
-                    decorationThickness: 2, 
-                  ),
-                ),
-                SizedBox(width: 20,),
-                Text(
-                  'Your rentals', 
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
-                ),
-              ],
-            ),
-            Divider(thickness: 1, color: Colors.black,),
-            SizedBox(
-              height: 600,
-              child: PageView.builder(
-                itemCount: pages.length,
-                itemBuilder: (context, index) {
-                  return pages[index];
-                },
-              ),
-            ),
-          ], 
-        ),
-      )
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class YourRentals extends StatelessWidget{
+  const YourRentals({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        GameTile(),
+        GameTile()
       ], 
     );
   }
@@ -99,7 +45,7 @@ class GameTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Catan',
+                      'Cat',
                       style: TextStyle(
                         fontFamily: 'worksans',
                         fontSize: 20,
