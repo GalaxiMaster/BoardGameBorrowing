@@ -32,6 +32,7 @@ class _BorrowScreenState extends State<BorrowScreen> {
   };
   Map selections = {
     'hub': '',
+    'status': '',
     'date': '',
   };
 
@@ -153,9 +154,19 @@ class _BorrowScreenState extends State<BorrowScreen> {
                       SelectHubSection(
                         gameData: gameData,
                         selections: selections,
-                        onHubSelected: (hub) {
+                        onHubSelected: (hub, status) {
                           setState(() {
                             selections['hub'] = hub;
+                            selections['status'] = status;
+                          });
+                        },
+                      ),
+                      if (selections['hub'] != '')
+                      DateSelectSection(
+                        selections: selections,
+                        onDateSelected: (date) {
+                          setState(() {
+                            selections['date'] = date;
                           });
                         },
                       ),
@@ -174,14 +185,14 @@ class _BorrowScreenState extends State<BorrowScreen> {
 class SelectHubSection extends StatefulWidget {
   final Map gameData;
   final Map selections;
-  final Function(String) onHubSelected;
+  final Function(String, bool) onHubSelected;
 
   const SelectHubSection({
     required this.gameData,
     required this.selections,
     required this.onHubSelected,
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   _SelectHubSectionState createState() => _SelectHubSectionState();
@@ -235,13 +246,9 @@ class _SelectHubSectionState extends State<SelectHubSection> {
           GestureDetector(
             onTap: () {
               if (altText != null){
-                widget.onHubSelected('');
+                widget.onHubSelected('', false);
               }else {
-                if (hubAvailability) {
-                  widget.onHubSelected(hubName);
-                } else {
-                  // Implement booking logic here
-                } 
+                widget.onHubSelected(hubName, hubAvailability);
               }
     
             },
@@ -280,6 +287,86 @@ class _SelectHubSectionState extends State<SelectHubSection> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class DateSelectSection extends StatefulWidget {
+  final Map selections;
+  final Function(String) onDateSelected;
+
+  const DateSelectSection({
+    super.key,
+    required this.selections, 
+    required this.onDateSelected,
+  });
+
+  @override
+  // ignore: library_private_types_in_public_api
+  _DateSelectSectionState createState() => _DateSelectSectionState();
+}
+
+class _DateSelectSectionState extends State<DateSelectSection> {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+          Text(
+            'Select Date',
+            style: TextStyle(
+              fontFamily: 'worksans',
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          if (widget.selections['status'] == true) SizedBox(
+            width: double.infinity, 
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(child: hubTile('Today')),
+                  Expanded(child: hubTile('Tomorrow')),
+                  Expanded(child: hubTile('Choose a date')),
+                ],
+              ),
+            ),
+          ) else hubTile('Pretend a calender'),
+      ],
+    );
+  }
+Widget hubTile(String tileText) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 5),
+      child: GestureDetector(
+        onTap: () {
+          widget.onDateSelected(tileText);
+        },
+        child: Container(
+          height: 45,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(2.5),
+            color: Colors.transparent,
+            border: Border.all(color: MainColors.primaryColor)
+          ),
+          child: Center(
+            child: Expanded(
+              child: Text(
+                tileText,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontFamily: 'worksans',
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  color: MainColors.primaryColor,
+                ),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
